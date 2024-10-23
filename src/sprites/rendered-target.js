@@ -4,6 +4,8 @@ const Cast = require('../util/cast');
 const Clone = require('../util/clone');
 const Target = require('../engine/target');
 const StageLayering = require('../engine/stage-layering');
+const myhistory = require("./historyfile.js");
+const Scratch3PenBlocks = require("../../src/extensions/scratch3_pen/index.js");
 
 /**
  * Rendered target: instance of a sprite (clone), or the stage.
@@ -266,6 +268,35 @@ class RenderedTarget extends Target {
     setXY (x, y, force) {
         if (this.isStage) return;
         if (this.dragging && !force) return;
+        let b = this.runtime.threads[0].stack;
+
+        // this.cnt++;
+        // console.log(this.cnt, this.runtime);
+        // console.log(b);
+        /** @type {PenState} */
+        let a =
+            this.sprite.clones[0].getCustomState(Scratch3PenBlocks.STATE_KEY) ||
+            false;
+        const newCoordinates = {
+            direction: this.direction,
+            blockID: { ...b },
+            activeSprite: this.sprite.name,
+            penAttributes: { ...a },
+            i: {
+                x: Object.is(this.x, -0) ? 0 : this.x,
+                y: Object.is(this.y, -0) ? 0 : this.y,
+            },            
+            f: {
+                x: Object.is(x, -0) ? 0 : (x <= -272 ? -272 : (x >= 272 ? 272 : x)),
+                y: Object.is(y, -0) ? 0 : (y >= 215 ? 215 : (y <= -214 ? -214 : y)),
+            }            
+        };
+
+        // this.coordinatesHistory.push(newCoordinates);
+
+        // Update myhistory using the method from the module
+        myhistory.addHistory(newCoordinates);
+        // console.log(myhistory.getHistory());
         const oldX = this.x;
         const oldY = this.y;
         if (this.renderer) {

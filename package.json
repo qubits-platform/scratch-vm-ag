@@ -31,6 +31,8 @@
     "tap": "tap ./test/{unit,integration}/*.js",
     "tap:unit": "tap ./test/unit/*.js",
     "tap:integration": "tap ./test/integration/*.js",
+    "jest": "jest",
+    "jest:watch": "jest --watch",
     "test": "npm run lint && npm run tap",
     "watch": "webpack --progress --watch",
     "version": "json -f package.json -I -e \"this.repository.sha = '$(git log -n1 --pretty=format:%H)'\""
@@ -94,6 +96,7 @@
     "format-message-cli": "6.2.4",
     "husky": "8.0.3",
     "in-publish": "2.0.1",
+    "jest": "^29.7.0",
     "js-md5": "0.7.3",
     "jsdoc": "3.6.11",
     "json": "^9.0.4",
