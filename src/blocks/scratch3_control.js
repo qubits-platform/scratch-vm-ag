@@ -1,5 +1,5 @@
 const Cast = require('../util/cast');
-
+const myhistory = require("../sprites/historyfile.js");
 class Scratch3ControlBlocks {
     constructor (runtime) {
         /**
@@ -111,6 +111,7 @@ class Scratch3ControlBlocks {
 
     wait (args, util) {
         if (util.stackTimerNeedsInit()) {
+            myhistory.addHistory({wait : args.DURATION});
             const duration = Math.max(0, 1000 * Cast.toNumber(args.DURATION));
 
             util.startStackTimer(duration);

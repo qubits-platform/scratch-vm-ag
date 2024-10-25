@@ -358,6 +358,7 @@ class RenderedTarget extends Target {
                 this.runtime.requestRedraw();
             }
         }
+        myhistory.addHistory({direction : this.direction});
         this.runtime.requestTargetsUpdate(this);
     }
 
