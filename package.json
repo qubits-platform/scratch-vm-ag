@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "@vernier/godirect": "^1.5.0",
+    "adm-zip": "0.4.11",
     "arraybuffer-loader": "^1.0.6",
     "atob": "^2.1.2",
     "btoa": "^1.2.1",
@@ -84,7 +85,6 @@
     "@babel/preset-env": "7.25.8",
     "@commitlint/cli": "17.8.1",
     "@commitlint/config-conventional": "17.8.1",
-    "adm-zip": "0.4.11",
     "babel-loader": "9.2.1",
     "callsite": "1.0.0",
     "copy-webpack-plugin": "4.6.0",
