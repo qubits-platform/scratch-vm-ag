@@ -4,4 +4,6 @@ const addHistory = coordinates => historyData.push(coordinates);
 
 const getHistory = () => historyData;
 
-module.exports = {addHistory, getHistory};
+const clearHistory = () => historyData.length = 0;
+
+module.exports = {addHistory, getHistory, clearHistory};
