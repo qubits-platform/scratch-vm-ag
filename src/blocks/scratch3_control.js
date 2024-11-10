@@ -111,7 +111,22 @@ class Scratch3ControlBlocks {
 
     wait (args, util) {
         if (util.stackTimerNeedsInit()) {
-            myhistory.addHistory({wait : args.DURATION});
+            // console.log('wait targets 0', this.runtime.executableTargets[2].runtime._editingTarget);
+            // console.log('wait targets 1', this.runtime.executableTargets[1].runtime._editingTarget);
+            // console.log('wait targets length', this.runtime.executableTargets.length);
+            const targets = this.runtime.targets
+                .filter((target) => !target.isStage) // Only include targets where isStage is false
+                .map((target) => ({
+                    [target.sprite.name]: {
+                        isVisible: target.visible,
+                    },
+                }))
+                .reduce((acc, curr) => ({ ...acc, ...curr }), {});
+
+            myhistory.addHistory({
+                wait: args.DURATION,
+                targets: targets,
+            });
             const duration = Math.max(0, 1000 * Cast.toNumber(args.DURATION));
 
             util.startStackTimer(duration);
