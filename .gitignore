@@ -8,7 +8,6 @@ npm-*
 # Testing
 /.nyc_output
 /coverage
-/test/autograding/
 
 # Editor
 /.idea
